@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <map>
 #include "parsing.cpp"
+#include "build.cpp"
 
 using namespace std;
 
@@ -127,8 +128,12 @@ int main(){
 
     vector<token> toks = tokenizer(in);
 	vector<variabile> rete1 = parsingpt1(toks);
+	vector<vector<int>> dag;
+	dag = build(rete1,mappa,mappa_inv);
+	stampa(dag,mappa_inv);
+
     // STAMPA DI VERIFICA
-    for (const auto& var : rete1) {
+/*    for (const auto& var : rete1) {
         cout << "Variabile: " << var.name << "\n";
 
         cout << "  Tipi: ";
@@ -153,7 +158,7 @@ int main(){
         }
         cout << "-----------------------------\n";
     }
-
+*/
 
     // STAMPA DI VERIFICA
 /*
@@ -162,4 +167,5 @@ int main(){
     }
     return 0;
 */
+
 }

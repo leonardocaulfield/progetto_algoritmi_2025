@@ -2,7 +2,7 @@ using namespace std;
 
 unordered_map<int,string> mappa_inv;
 
-vector<vector<int>> build(const vector<variables>& rete,const unordered_map<string,int>& map,unordered_map<int,string>& mappa_inv){
+vector<vector<int>> build(const vector<variabile>& rete,const unordered_map<string,int>& map,unordered_map<int,string>& mappa_inv){
 	int i=0;
 	for(const auto &chiave : map){
 		mappa_inv[chiave.second] = chiave.first;
@@ -12,7 +12,7 @@ vector<vector<int>> build(const vector<variables>& rete,const unordered_map<stri
 	for(const auto &ind : rete){
 		if(!(ind.genitori.empty())){
 			for(const auto &v : ind.genitori){
-				adj[map[v]].push_back(map[ind.name]);
+				adj.at(map.at(v)).push_back(map.at(ind.name));
 			}
 		}
 	}
@@ -20,13 +20,13 @@ vector<vector<int>> build(const vector<variables>& rete,const unordered_map<stri
 }
 
 void stampa(const vector<vector<int>>& dag,const unordered_map<int,string>& map_inv){
-	for(auto vint : dag){
-		int i=0;
-		cout << map_inv.at(vint[i]) << " : ";
-		for(auto j : dag[vint[i]]){
-			cout << map_inv.at([j]) << "  ";
-		}
-		cout << endl;
-		i++;
-	}
+    for (size_t u = 0; u < dag.size(); u++) {
+        cout << map_inv.at(u) << " : ";
+        if (dag[u].empty()) {
+            cout << "vuoto" << endl;
+            continue;
+        }
+        for (int v : dag[u]) cout << map_inv.at(v) << "  ";
+        cout << endl;
+    }
 }
