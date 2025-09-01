@@ -1,33 +1,54 @@
 using namespace std;
 
+void DFS(const vector<vector<int>>& dag,vector<int>& ord,int *u,bool v[],int *cont);
+
 vector<int> topo_sort(const vector<vector<int>>& dag){
 
 	vector<int> ordinato;
-	int n = size(dag);
+	int n = dag.size();
 	bool v[n];
 	ordinato.resize(n);
 
 	for(int i=0;i<n;i++) v[i] = false;
 
-	contatore = n-1;
+	int contatore = n-1;
 
 	for(int s=0;s< n;s++){
 		if(!(v[s])){
-			DFS(...)
+			DFS(dag,ordinato,&s,v,&contatore);
 		}
 	}
+	return ordinato;
 }
 
-void DFS(){
+void DFS(const vector<vector<int>>& dag,vector<int>& ord,int *u,bool v[],int *cont){
 
-	v[u] = true;
-	for(int x : dag[u])
+	v[*u] = true;
+	for(auto x : dag)
 	{
-		auto k = x;
-		if(!(v[k])){
-			DFS(...)
+		int i=0;
+		while(i<x.size()){
+			auto k = x[i];
+			if(!(v[k])){
+				DFS(dag,ord,u,v,cont);
+			}
+			i++;
 		}
 	}
-	ordinato[u] = contatore;
-	contatore--;
+	ord[*u] = *cont;
+	(*cont)--;
+}
+
+void stampavet(const vector<int>& vet){
+
+	cout << endl;
+	cout << "[";
+
+	for(auto i : vet){
+		cout << i << " , ";
+	}
+
+	cout << "]";
+	cout << endl;
+
 }

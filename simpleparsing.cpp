@@ -9,6 +9,7 @@
 #include <map>
 #include "parsing.cpp"
 #include "build.cpp"
+#include "topologial_sort.cpp"
 
 using namespace std;
 
@@ -130,7 +131,9 @@ int main(){
 	vector<variabile> rete1 = parsingpt1(toks);
 	vector<vector<int>> dag;
 	dag = build(rete1,mappa,mappa_inv);
-	stampa(dag,mappa_inv);
+	vector<int> topologico;
+	topologico = topo_sort(dag);
+	stampavet(topologico);
 
     // STAMPA DI VERIFICA
 /*    for (const auto& var : rete1) {
