@@ -121,7 +121,7 @@ vector<token> tokenizer(istream &in){
     return tokens;
 }
 int main(){
-    ifstream in("BIF/munin.bif");
+    ifstream in("BIF/cancer.bif");
     if (!in) {
         cerr << "Errore: impossibile aprire il file\n";
         return 1;

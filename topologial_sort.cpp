@@ -1,6 +1,6 @@
 using namespace std;
 
-void DFS(const vector<vector<int>>& dag,vector<int>& ord,int *u,bool v[],int *cont);
+void DFS(const vector<vector<int>>& dag,vector<int>& ord,int u,bool v[],int *cont);
 
 vector<int> topo_sort(const vector<vector<int>>& dag){
 
@@ -15,27 +15,23 @@ vector<int> topo_sort(const vector<vector<int>>& dag){
 
 	for(int s=0;s< n;s++){
 		if(!(v[s])){
-			DFS(dag,ordinato,&s,v,&contatore);
+			DFS(dag,ordinato,s,v,&contatore);
 		}
 	}
 	return ordinato;
 }
 
-void DFS(const vector<vector<int>>& dag,vector<int>& ord,int *u,bool v[],int *cont){
+void DFS(const vector<vector<int>>& dag,vector<int>& ord,int u,bool v[],int *cont){
 
-	v[*u] = true;
-	for(auto x : dag)
+	v[u] = true;
+	for(auto x : dag[u])
 	{
-		int i=0;
-		while(i<x.size()){
-			auto k = x[i];
-			if(!(v[k])){
-				DFS(dag,ord,u,v,cont);
-			}
-			i++;
+		auto k = x;
+		if(!(v[k])){
+			DFS(dag,ord,k,v,cont);
 		}
 	}
-	ord[*u] = *cont;
+	ord[u] = *cont;
 	(*cont)--;
 }
 
