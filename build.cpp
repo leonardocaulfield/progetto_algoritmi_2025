@@ -21,7 +21,7 @@ vector<vector<int>> build(const vector<variabile>& rete,const unordered_map<stri
 
 void stampa(const vector<vector<int>>& dag,const unordered_map<int,string>& map_inv){
     for (size_t u = 0; u < dag.size(); u++) {
-        cout << map_inv.at(u) << " : ";
+        cout << map_inv.at(u) << " ---> ";
         if (dag[u].empty()) {
             cout << "vuoto" << endl;
             continue;
