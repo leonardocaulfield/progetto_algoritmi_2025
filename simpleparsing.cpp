@@ -130,13 +130,14 @@ int main(){
     vector<token> toks = tokenizer(in);
 	vector<variabile> rete1 = parsingpt1(toks);
 	vector<vector<int>> dag;
-	dag = build(rete1,mappa,mappa_inv);
+
+/*	dag = build(rete1,mappa,mappa_inv);
 	vector<int> topologico;
 	topologico = topo_sort(dag);
 	stampavet(topologico);
-
+*/
     // STAMPA DI VERIFICA
-/*    for (const auto& var : rete1) {
+    for (const auto& var : rete1) {
         cout << "Variabile: " << var.name << "\n";
 
         cout << "  Tipi: ";
@@ -161,7 +162,7 @@ int main(){
         }
         cout << "-----------------------------\n";
     }
-*/
+
 
     // STAMPA DI VERIFICA
 /*
