@@ -120,6 +120,7 @@ vector<token> tokenizer(istream &in){
 
     return tokens;
 }
+
 int main(){
     ifstream in("BIF/cancer.bif");
     if (!in) {
