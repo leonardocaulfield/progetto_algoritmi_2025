@@ -1,16 +1,3 @@
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <cstring>
-#include <fstream>
-#include <vector>
-#include <cctype>
-#include <unordered_map>
-#include <map>
-#include "parsing.cpp"
-#include "build.cpp"
-#include "topologial_sort.cpp"
-
 using namespace std;
 
 //enum tipotoken { KEYWORDS, NUMBER, IDEN, PUNTEGGIATURA, PARENTESI, NUMERITABELLE };
@@ -119,58 +106,4 @@ vector<token> tokenizer(istream &in){
     }
 
     return tokens;
-}
-
-int main(){
-    ifstream in("BIF/cancer.bif");
-    if (!in) {
-        cerr << "Errore: impossibile aprire il file\n";
-        return 1;
-    }
-
-    vector<token> toks = tokenizer(in);
-	vector<variabile> rete1 = parsingpt1(toks);
-	vector<vector<int>> dag;
-
-/*	dag = build(rete1,mappa,mappa_inv);
-	vector<int> topologico;
-	topologico = topo_sort(dag);
-	stampavet(topologico);
-*/
-    // STAMPA DI VERIFICA
-    for (const auto& var : rete1) {
-        cout << "Variabile: " << var.name << "\n";
-
-        cout << "  Tipi: ";
-        for (const auto& t : var.tipi) {
-            cout << t << " ";
-        }
-        cout << "\n";
-
-        cout << "  Genitori: ";
-        for (const auto& g : var.genitori) {
-            cout << g << " ";
-        }
-        cout << "\n";
-
-        cout << "  CPT: \n";
-        for (size_t i=0; i<var.cpt.size(); i++) {
-            cout << "    Riga " << i << ": ";
-            for (double val : var.cpt[i]) {
-                cout << val << " ";
-            }
-            cout << "\n";
-        }
-        cout << "-----------------------------\n";
-    }
-
-
-    // STAMPA DI VERIFICA
-/*
-    for (const auto& t : toks) {
-        cout << token_name(t.TYPE) << " : " << t.valorestesso << '\n';
-    }
-    return 0;
-*/
-
 }

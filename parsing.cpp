@@ -15,7 +15,7 @@ struct variabile{
 };
 
 vector<variabile> rete;
-unordered_map<string,int> mappa;
+unordered_map<string,int> name_id;
 
 //bool iskey(tipotoken tp,string valorestes){if(tp == KEYWORDS  &&  valo
 
@@ -74,11 +74,11 @@ vector<variabile> parsingpt1(const vector<token>& tok){
 	while(i<tok.size()){
 		if(tok[i].valorestesso == "variable"){
 			i++;
-			op_variabile(&i,&k,tok,mappa);
+			op_variabile(&i,&k,tok,name_id);
 		}
 		if(tok[i].valorestesso == "probability"){
 			i+=2;
-			op_probabilita(&i,&k,tok,mappa);
+			op_probabilita(&i,&k,tok,name_id);
 		}
 		i++;
 	}

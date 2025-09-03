@@ -35,16 +35,3 @@ void DFS(const vector<vector<int>>& dag,vector<int>& ord,int u,bool v[],int *con
 	(*cont)--;
 }
 
-void stampavet(const vector<int>& vet){
-
-	cout << endl;
-	cout << "[";
-
-	for(auto i : vet){
-		cout << i << " , ";
-	}
-
-	cout << "]";
-	cout << endl;
-
-}
