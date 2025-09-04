@@ -9,7 +9,6 @@ struct dettagli{
 	vector<int> quale_parent;
 };
 
-
 vector<dettagli> creo_parenti(const vector<variabile>& rete,unordered_map<string,int>& name_id){
 
 	vector<dettagli> ip;
@@ -108,7 +107,7 @@ double probabilita_marginale(const vector<variabile>& bayes,
             break;
         }
     }
-    if (idx < 0 || val_idx < 0) return 0.0;
+    //if (idx < 0 || val_idx < 0) return 0.0;
 
 // prob_marginale.cpp (pezzo già presente, ora coerente con A)
 	vector<int> topo_pos = build_topo_pos(topo);

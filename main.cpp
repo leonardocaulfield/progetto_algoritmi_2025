@@ -20,9 +20,17 @@
 using namespace std;
 
 int main(){
-    ifstream in("BIF/cancer.bif");
+	
+	string b;
+	string rete;
+	cout << "quale rete vorresti analizzare? ";
+	cin >> b;
+	rete = "BIF/" + b;
+
+
+    ifstream in(rete);
     if (!in) {
-        cerr << "Errore: impossibile aprire il file\n";
+        cerr << "il file che hai scritto non esiste\n";
         return 1;
     }
 
