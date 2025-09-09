@@ -1,4 +1,3 @@
-//QUI METTO IL MAIN
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -10,8 +9,8 @@
 #include <map>
 #include <thread>
 #include <chrono>
-#include "parsing.cpp"
 #include "lexer.cpp"
+#include "parsing.cpp"
 #include "build.cpp"
 #include "topologial_sort.cpp"
 #include "prob_marginale.cpp"
@@ -35,22 +34,23 @@ int main(){
     }
 
 	vector<token> toks = tokenizer(in);
-	vector<variabile> rete1 = parsingpt1(toks);
+	vector<variabile> rete1 = parsing(toks);
 	stampa_la_rete(rete1);
 
-	this_thread::sleep_for(chrono::seconds(1));
+	this_thread::sleep_for(chrono::seconds(4));
 
 	vector<vector<int>> dag;
 	dag = build(rete1,name_id,id_name);
 	stampa(dag,id_name);
 
-	this_thread::sleep_for(chrono::seconds(1));
+	this_thread::sleep_for(chrono::seconds(4));
 
 	vector<int> topologico;
 	topologico = topo_sort(dag);
 	stampa_ordinamento_causale(topologico);
 
-	this_thread::sleep_for(chrono::seconds(1));
+	cout << endl;
+	this_thread::sleep_for(chrono::seconds(4));
 
 	vector<dettagli> parents;
 	parents = creo_parenti(rete1,name_id);

@@ -3,11 +3,13 @@ using namespace std;
 unordered_map<int,string> id_name;
 
 vector<vector<int>> build(const vector<variabile>& rete,const unordered_map<string,int>& name_id,unordered_map<int,string>& id_name){
+
 	int i=0;
 	for(const auto &chiave : name_id){
 		id_name[chiave.second] = chiave.first;
 		i++;
      	}
+
 	vector<vector<int>> adj(i);
 	for(const auto &ind : rete){
 		if(!(ind.genitori.empty())){

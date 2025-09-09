@@ -1,40 +1,38 @@
-// topologial_sort.cpp
-#include <algorithm>
-
 using namespace std;
 
-// DFS che costruisce l'ordine topologico (push su fine visita)
-static void DFS_list(const vector<vector<int>>& dag,
+void DFS(const vector<vector<int>>& dag,
                      int u,
-                     vector<char>& vis,
-                     vector<int>& order)
+                     vector<bool>& vis,
+                     vector<int>& order,int *conta)
 {
-    vis[u] = 1;
+    vis[u] = true;
     for (int v : dag[u]) {
-        if (!vis[v]) DFS_list(dag, v, vis, order);
+        if (!vis[v]) DFS(dag, v, vis, order,conta);
     }
-    order.push_back(u);  // push dopo i figli
+	order[u] = *conta;
+	(*conta)--;
 }
 
-// Restituisce la lista dei nodi in ordine topologico
 vector<int> topo_sort(const vector<vector<int>>& dag) {
-    int n = (int)dag.size();
-    vector<char> vis(n, 0);
-    vector<int> order;
-    order.reserve(n);
+    int n = dag.size();
+    vector<bool> vis(n);
+    vector<int> order(n);
 
-    for (int s = 0; s < n; ++s) {
-        if (!vis[s]) DFS_list(dag, s, vis, order);
+	int contatore = n-1;
+
+	for(auto k : vis){
+		k = false;
+	}
+
+    for (int s = 0; s<n; s++) {
+        if (!vis[s]) DFS(dag, s, vis, order,&contatore);
     }
-
-    reverse(order.begin(), order.end()); // ottieni ordine corretto
-    return order; // esempio: [nodo1, nodo2, nodo3, ...]
+    return order;
 }
 
-// Costruisce la mappa nodo -> posizione nell’ordinamento topologico
 vector<int> build_topo_pos(const vector<int>& topo_list) {
     vector<int> pos(topo_list.size());
-    for (int i = 0; i < (int)topo_list.size(); ++i) {
+    for (int i = 0; i < topo_list.size(); ++i) {
         pos[topo_list[i]] = i;
     }
     return pos;
